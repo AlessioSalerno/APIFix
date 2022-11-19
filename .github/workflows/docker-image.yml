@@ -17,13 +17,13 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       
-  before_script:
-    - "sudo apt-get update"
-    - "sudo apt-get install -y dotnet5"
-    - "sudo apt-get install -y dotnet-runtime-5.0"
-    - "cd src"
-    - "dotnet restore"
-    - "dotnet build"
-    
-  script:
-    - "dotnet test"
+before_script:
+  - "sudo apt-get update"
+  - "sudo apt-get install -y dotnet5"
+  - "sudo apt-get install -y dotnet-runtime-5.0"
+  - "cd src"
+  - "dotnet restore"
+  - "dotnet build"
+
+script:
+  - "dotnet test"
