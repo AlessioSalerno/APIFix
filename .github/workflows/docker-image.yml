@@ -18,6 +18,7 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       
   before_script:
+    - "sudo apt-get update"
     - "sudo apt-get install -y dotnet5"
     - "sudo apt-get install -y dotnet-runtime-5.0"
     - "cd src"
