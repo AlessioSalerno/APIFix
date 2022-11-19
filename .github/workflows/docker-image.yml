@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      
+  before_script:
+    - "sudo apt-get install -y dotnet5"
+    - "sudo apt-get install -y dotnet-runtime-5.0"
+    - "cd src"
+    - "dotnet restore"
+    - "dotnet build"
+    
+  script:
+    - "dotnet test"
